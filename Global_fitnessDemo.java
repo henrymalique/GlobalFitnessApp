@@ -42,7 +42,7 @@ public static void main(String[] args) {
             break;
         default:
             // Invalid input
-            System.out.println("Invalid choice. Please try again.");
+            System.out.println("Invalid input. Please try again.");
             main(args);
     }
 }
@@ -98,5 +98,5 @@ public static void login() {
                 break;
             default:
                 // Invalid input
-                System.out.println("Invalid choice. Please try again.");
+                System.out.println("Invalid input. Please try again.");
                
