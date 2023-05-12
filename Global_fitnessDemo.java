@@ -1,70 +1,102 @@
-// Import necessary libraries
+// Import required libraries and packages
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
-// Define the GlobalFitness class
-public class GlobalFitness {
-    // Define instance variables
-    private String userName;
-    private int age;
-    private double weight;
-    private double height;
-    private double bmi;
+// Global Fitness App class
+public class GlobalFitnessApp {
+
+// Define data structures for storing user and workout information
+private static Map<String, String> users = new HashMap<String, String>();
+private static Map<String, UserProfile> userProfiles = new HashMap<String, UserProfile>();
+private static List<Workout> workouts = new ArrayList<Workout>();
+
+// Define main method
+public static void main(String[] args) {
+    // Display welcome message and options
+    System.out.println("Welcome to the Global Fitness App!");
+    System.out.println("1. Login");
+    System.out.println("2. Register");
+    System.out.println("3. Exit");
     
-    // Define a constructor to initialize the instance variables
-    public GlobalFitness(String userName, int age, double weight, double height) {
-        this.userName = userName;
-        this.age = age;
-        this.weight = weight;
-        this.height = height;
-    }
+    // Read user input
+    Scanner scanner = new Scanner(System.in);
+    int choice = scanner.nextInt();
     
-    // Define a method to calculate the BMI of the user
-    public void calculateBMI() {
-        // Calculate the BMI using the weight and height of the user
-        bmi = weight / (height * height);
-    }
-    
-    // Define a method to display the user's BMI and health status
-    public void displayBMI() {
-        // Display the user's BMI and health status based on the calculated BMI
-        System.out.println("Your BMI is " + bmi);
-        if (bmi < 18.5) {
-            System.out.println("You are underweight.");
-        } else if (bmi >= 18.5 && bmi < 25) {
-            System.out.println("You have a normal weight.");
-        } else if (bmi >= 25 && bmi < 30) {
-            System.out.println("You are overweight.");
-        } else {
-            System.out.println("You are obese.");
-        }
-    }
-    
-    // Define a method to get the user's input for weight and height
-    public void getUserInput() {
-        // Create a Scanner object to read user input
-        Scanner scanner = new Scanner(System.in);
-        
-        // Get the user's weight
-        System.out.print("Enter your weight in kilograms: ");
-        weight = scanner.nextDouble();
-        
-        // Get the user's height
-        System.out.print("Enter your height in meters: ");
-        height = scanner.nextDouble();
-    }
-    
-    // Define the main method to run the program
-    public static void main(String[] args) {
-        // Create a GlobalFitness object for the user "John Doe" who is 30 years old, weighs 80 kg, and is 1.8 m tall
-        GlobalFitness user = new GlobalFitness("John Doe", 30, 80, 1.8);
-        
-        // Get the user's input for weight and height
-        user.getUserInput();
-        
-        // Calculate the user's BMI
-        user.calculateBMI();
-        
-        // Display the user's BMI and health status
-        user.displayBMI();
+    // Handle user choice
+    switch(choice) {
+        case 1:
+            // Call login method
+            login();
+            break;
+        case 2:
+            // Call register method
+            register();
+            break;
+        case 3:
+            // Exit the program
+            System.out.println("Thank you for using the Global Fitness App. Goodbye!");
+            System.exit(0);
+            break;
+        default:
+            // Invalid input
+            System.out.println("Invalid choice. Please try again.");
+            main(args);
     }
 }
+
+// Define login method
+public static void login() {
+    // Prompt user for email and password
+    System.out.println("Please enter your email:");
+    Scanner scanner = new Scanner(System.in);
+    String email = scanner.nextLine();
+    System.out.println("Please enter your password:");
+    String password = scanner.nextLine();
+    
+    // Check if user exists and password is correct
+    if (users.containsKey(email) && users.get(email).equals(password)) {
+        // Display user profile and options
+        System.out.println("Welcome back, " + userProfiles.get(email).getName() + "!");
+        System.out.println("1. View profile");
+        System.out.println("2. View workouts");
+        System.out.println("3. Create custom workout");
+        System.out.println("4. Track progress");
+        System.out.println("5. Logout");
+        
+        // Read user input
+        int choice = scanner.nextInt();
+        
+        // Handle user choice
+        switch(choice) {
+            case 1:
+                // Display user profile
+                System.out.println(userProfiles.get(email));
+                login();
+                break;
+            case 2:
+                // Display workout list
+                for (Workout workout : workouts) {
+                    System.out.println(workout);
+                }
+                login();
+                break;
+            case 3:
+                // Call create custom workout method
+                createCustomWorkout(email);
+                break;
+            case 4:
+                // Call track progress method
+                trackProgress(email);
+                break;
+            case 5:
+                // Logout the user
+                System.out.println("Logging out...");
+                main(new String[] {});
+                break;
+            default:
+                // Invalid input
+                System.out.println("Invalid choice. Please try again.");
+               
