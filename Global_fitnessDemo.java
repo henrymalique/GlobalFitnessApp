@@ -24,6 +24,7 @@ public static void main(String[] args) {
     // Read user input
     Scanner scanner = new Scanner(System.in);
     int choice = scanner.nextInt();
+    scanner.close();
     
     // Handle user choice
     switch(choice) {
@@ -86,10 +87,12 @@ public static void login() {
             case 3:
                 // Call create custom workout method
                 createCustomWorkout(email);
+                login();
                 break;
             case 4:
                 // Call track progress method
                 trackProgress(email);
+                login();
                 break;
             case 5:
                 // Logout the user
