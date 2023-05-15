@@ -219,15 +219,6 @@ public static void trackProgress(String email) {
     System.out.println("Please enter your body fat percentage:");
     double bodyFatPercentage = scanner.nextDouble();
     
-    // Define track progress method
-public static void trackProgress(String email) {
-    // Prompt user for progress information
-    System.out.println("Please enter your weight (in kg):");
-    Scanner scanner = new Scanner(System.in);
-    double weight = scanner.nextDouble();
-    System.out.println("Please enter your body fat percentage:");
-    double bodyFatPercentage = scanner.nextDouble();
-    
     // Update user profile with progress information
     userProfiles.get(email).updateWeight(weight);
     userProfiles.get(email).updateBodyFatPercentage(bodyFatPercentage);
