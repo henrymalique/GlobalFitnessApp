@@ -22,7 +22,7 @@ class UserProfile {
         return null;
     }
     
-    // Existing UserProfile code
+
 }
 
 class Workout {
@@ -34,7 +34,6 @@ class Workout {
     public void addExercise(Exercise exercise) {
     }
     
-    // Existing Workout code
 }
 
 class Exercise {
@@ -43,7 +42,6 @@ class Exercise {
         // Initialize the Exercise instance with the provided arguments
     }
     
-    // Existing Exercise code
 }
 // Global Fitness App class
 public class GlobalFitnessApp {
